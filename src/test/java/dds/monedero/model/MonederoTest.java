@@ -1,11 +1,10 @@
 package dds.monedero.model;
 
-import dds.monedero.exceptions.MaximaCantidadDepositosException;
-import dds.monedero.exceptions.MaximoExtraccionDiarioException;
-import dds.monedero.exceptions.MontoNegativoException;
-import dds.monedero.exceptions.SaldoMenorException;
+import dds.monedero.exceptions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,6 +14,12 @@ public class MonederoTest {
   @BeforeEach
   void init() {
     cuenta = new Cuenta();
+  }
+
+  @Test
+  void esDeHoy() {
+    cuenta.poner(1500);
+    assertTrue(cuenta.getDepositos().get(0).esDeLaFecha(LocalDate.now()));
   }
 
   @Test
